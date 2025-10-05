@@ -1,0 +1,45 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure _site exists
+        run: mkdir -p _site
+
+      - name: Build the site in jekyll/builder container
+        env:
+          JEKYLL_ENV: production
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/srv/jekyll" \
+            -v "${{ github.workspace }}/_site:/srv/jekyll/_site" \
+            -w /srv/jekyll \
+            jekyll/builder:latest \
+            /bin/bash -lc "chmod -R a+rw /srv/jekyll && bundle exec jekyll build --destination /srv/jekyll/_site --trace"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: _site
+
+  deploy:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
