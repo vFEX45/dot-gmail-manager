@@ -1,32 +1,129 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DOT - Gmail Manager Pro</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="/styles.css">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#0ea5a4; --muted:#9aa6b2; --glass:rgba(255,255,255,0.04);
+      --radius:12px; --fw-medium:600;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#071028 0%, #081426 40%, #07192a 100%); color:#e6eef6;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:48px;
+    }
+
+    .wrap{
+      width:980px; max-width:96vw; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:18px; padding:36px; box-shadow:0 20px 50px rgba(2,6,23,0.7);
+      display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:start;
+      transform:translateY(8px); animation:float 8s ease-in-out infinite;
+    }
+
+    @keyframes float{ 0%{transform:translateY(8px)} 50%{transform:translateY(-8px)} 100%{transform:translateY(8px)} }
+
+    .hero{padding:8px 0}
+    h1{margin:0 0 8px; font-size:28px; letter-spacing:-0.4px}
+    p.lead{margin:0 0 18px; color:var(--muted); font-size:15px; line-height:1.55}
+    .badge{display:inline-block; background:linear-gradient(90deg,var(--accent),#06b6d4); color:#042022;
+      padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px; margin-bottom:12px}
+
+    .features{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      padding:14px; border-radius:12px; color:var(--muted); font-size:14px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.5); transition:transform .28s ease, box-shadow .28s ease;
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    .card h3{margin:0 0 6px; color:#dff7f6; font-size:15px; font-weight:700}
+    .meta{font-size:13px; color:var(--muted)}
+
+    .aside{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px; padding:18px; border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 8px 30px rgba(2,6,23,0.45);
+    }
+    .contact{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+    .avatar{
+      width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,#072a2b, #06323a);
+      display:flex; align-items:center; justify-content:center; font-weight:700; color:#aeecef; box-shadow:inset 0 -6px 18px rgba(0,0,0,0.35);
+    }
+    a.cta{
+      display:inline-block; text-decoration:none; background:var(--accent); color:#042022;
+      padding:10px 14px; border-radius:10px; font-weight:700; margin-top:10px;
+      box-shadow:0 8px 20px rgba(14,165,164,0.12); transition:transform .18s ease;
+    }
+    a.cta:hover{transform:translateY(-4px)}
+
+    footer.sitefoot{grid-column:1 / -1; margin-top:20px; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:13px}
+    footer.sitefoot a{color:#9fe9e6; text-decoration:none}
+
+    /* subtle motion on icons */
+    .pulse{display:inline-block; animation:pulse 2.5s ease-in-out infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+  </style>
 </head>
 <body>
-  <header>
-    <h1>DOT - Gmail Manager Pro</h1>
-    <p>Advanced Gmail management desktop application for bulk email operations and productivity.</p>
-  </header>
+  <div class="wrap" role="main" aria-labelledby="app-title">
+    <div class="hero">
+      <span class="badge pulse">Enterprise Grade</span>
+      <h1 id="app-title">DOT — Gmail Manager Pro</h1>
+      <p class="lead">Advanced Gmail management desktop application for bulk email operations, automated workflows, and high-volume productivity with enterprise controls and auditability.</p>
 
-  <main>
-    <section>
-      <h2>About</h2>
-      <p>DOT helps users clean, label, archive, and send messages at scale from a single secure interface.</p>
-    </section>
+      <div class="features" aria-hidden="false">
+        <div class="card">
+          <h3>Bulk Operations</h3>
+          <div class="meta">Archive, label, delete, and reclassify thousands of messages reliably with progress, batching and undo.</div>
+        </div>
+        <div class="card">
+          <h3>In-app Compose & Send</h3>
+          <div class="meta">Compose, template, and send messages directly without context switching; supports attachments and follow-ups.</div>
+        </div>
+        <div class="card">
+          <h3>Secure Cloud Processing</h3>
+          <div class="meta">Temporary exports and attachments processed in isolated jobs with automatic cleanup and strict access controls.</div>
+        </div>
+        <div class="card">
+          <h3>Enterprise Controls</h3>
+          <div class="meta">Configurable batch limits, confirmation flows for destructive actions, progress tracking and admin audit logs.</div>
+        </div>
+      </div>
+    </div>
 
-    <section>
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:jspere00@gmail.com">jspere00@gmail.com</a></p>
-    </section>
+    <aside class="aside" aria-label="Contact and policy">
+      <div class="contact">
+        <div class="avatar">DOT</div>
+        <div>
+          <strong>DOT — Gmail Manager Pro</strong>
+          <div class="meta">Contact: <a href="mailto:jspere00@gmail.com">jspere00@gmail.com</a></div>
+        </div>
+      </div>
 
-    <footer>
-      <p><a href="/privacy.html">Privacy Policy</a></p>
-      <p>© DOT — Gmail Manager Pro</p>
+      <div style="margin-top:8px">
+        <strong>Privacy & Permissions</strong>
+        <p class="meta" style="margin:8px 0 0">
+          Privacy policy and scope details available below. All destructive and bulk operations require explicit user consent and confirmations.
+        </p>
+      </div>
+
+      <a class="cta" href="/privacy.html" role="button" aria-label="Open privacy policy">View Privacy Policy</a>
+    </aside>
+
+    <footer class="sitefoot" role="contentinfo">
+      <div>© DOT — Gmail Manager Pro</div>
+      <div><a href="/privacy.html">Privacy Policy</a></div>
     </footer>
-  </main>
+  </div>
+
+  <!-- Note: homepage currently lists title and contact as published content for this project . -->
+  <script>
+    /* small accessibility enhancement: focus outline for keyboard users */
+    document.addEventListener('keyup', e => { if(e.key === 'Tab') document.body.classList.add('show-focus'); });
+  </script>
 </body>
 </html>
