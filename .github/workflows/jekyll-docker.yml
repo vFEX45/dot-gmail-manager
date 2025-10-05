@@ -37,7 +37,7 @@ jobs:
         run: ls -la _site || true
 
       - name: Upload Pages artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v1
         with:
           path: _site
 
