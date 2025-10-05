@@ -31,7 +31,7 @@ jobs:
             -v "${{ github.workspace }}/_site:/srv/jekyll/_site" \
             -w /srv/jekyll \
             jekyll/builder:latest \
-            /bin/bash -lc "chmod -R a+rw /srv/jekyll && bundle install --jobs 4 --retry 3 || true && bundle exec jekyll build --destination /srv/jekyll/_site --trace"
+            /bin/bash -lc "chmod -R a+rw /srv/jekyll && bundle install --jobs 4 --retry 3 || true && bundle exec jekyll build --source . --destination /srv/jekyll/_site --trace"
 
       - name: List built files
         run: ls -la _site || true
